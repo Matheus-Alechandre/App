@@ -1,6 +1,6 @@
 import os
 
-restaurante =['Girafus e a Dani','Xp']
+restaurantes =['Girafus e a Dani','Xp']
 
 def exibir_nome_do_programa():  
  print("""Oscar Alho
@@ -18,30 +18,50 @@ def voltar_ao_menu_principal():
    input('\n Digite a tecla "Enter" para voltar ao menu pŕincipal')
    main()
 
-
-
-opcao_escolhida = int(input('Escolha uma opção: '))
-
-
+def opcao_invalida():
+   print('Opção invalida!\n')
+   voltar_ao_menu_principal()
 
 def exibir_subtitulos(texto):
-    os.system("cls")
+    os.system("clear")
     print(texto)
     print()
 
+def cadastrar_novo_restaurante():
+   exibir_subtitulos('Cadastro de novo Restaurante:')
+   nome_do_restaurante = input('Digite o nome do novo Restaurante ')
+   restaurantes.append(nome_do_restaurante)
+   print(f'O restaurante {nome_do_restaurante} foi cadastrado com sucesso!')
+   voltar_ao_menu_principal()
+
+def listar_restaurante():
+   exibir_subtitulos('Listando os Restaurantes')
+       
+   for restaurante in restaurantes:
+      print(f'*{restaurante}')
+
+   voltar_ao_menu_principal
+
 def escolher_opcao():
+ try:
+    opcao_escolhida = int(input('Escolha uma opção: '))
    
     if opcao_escolhida == 1:
-        print('Cadastrar restaurante')
+        cadastrar_novo_restaurante()
     elif opcao_escolhida == 2:
-        print('listar restaurante')
+        listar_restaurante()
     elif opcao_escolhida == 3:
         print('Ativar restaurante')
+    elif opcao_escolhida == 4:
+       finalizar_app()
     else:
-        finalizar_app()
+       opcao_invalida()
+        
+ except:
+      opcao_invalida()
 
 def main():
-    os.System('clear')
+    os.system('clear')
     exibir_nome_do_programa()
     exibir_opcoes()
     escolher_opcao()
