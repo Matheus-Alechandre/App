@@ -1,9 +1,11 @@
 import os
 
-restaurantes =['Girafus e a Dani','Xp']
+restaurantes = [{'nome':'Girafus e a Dani','categoria': 'Alimento','ativo':False},
+                {'nome':'Santa','categoria':'pastel de carne','ativo':True},
+                {'nome':'CWB','categoria':'pizza de frango','ativo':False}]
 
 def exibir_nome_do_programa():  
- print("""Oscar Alho
+ print("""Oscar Alhos
   """)
 def exibir_opcoes():
  print('1. Cadastrar restaurante')
@@ -24,23 +26,32 @@ def opcao_invalida():
 
 def exibir_subtitulos(texto):
     os.system("clear")
+    linha = '*' + (len(texto))
+    print(linha)
     print(texto)
+    print(linha)
     print()
 
 def cadastrar_novo_restaurante():
    exibir_subtitulos('Cadastro de novo Restaurante:')
    nome_do_restaurante = input('Digite o nome do novo Restaurante ')
-   restaurantes.append(nome_do_restaurante)
+   categoria = input(f'Digite a categoria do restaurante {nome_do_restaurante}: ')
+   dado_do_restaurante ={'nome':nome_do_restaurante, 'categoria':categoria, 'ativo':False}
+   restaurantes.append(dado_do_restaurante)
    print(f'O restaurante {nome_do_restaurante} foi cadastrado com sucesso!')
    voltar_ao_menu_principal()
 
 def listar_restaurante():
    exibir_subtitulos('Listando os Restaurantes')
-       
-   for restaurante in restaurantes:
-      print(f'*{restaurante}')
 
-   voltar_ao_menu_principal
+   print(f'{"Nome do restaurnte".LJust(22)} | {"Categoria".Ljust(20)} | Status')
+   for restaurante in restaurantes:
+      nome_restaurante = restaurante['nome']
+      categoria = restaurante ['categoria']
+      ativo = 'ativado' if restaurante['ativo'] else 'desativado'
+      print(f'-{nome_restaurante.LJust(20)} | {categoria.LJust(20)} | {ativo}')
+
+   voltar_ao_menu_principal()
 
 def escolher_opcao():
  try:
