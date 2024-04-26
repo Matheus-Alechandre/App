@@ -1,57 +1,62 @@
 import os
 
-restaurantes = [{'nome':'Girafus e a Dani','categoria': 'Alimento','ativo':False},
-                {'nome':'Santa','categoria':'pastel de carne','ativo':True},
-                {'nome':'CWB','categoria':'pizza de frango','ativo':False}]
+restaurantes = [{'nome':'restaurante XP','categoria':'Alimento','ativo':False},
+                {'nome':'Santa','categoria':'carne','ativo':True},
+                {'nome':'CWB','categoria':'Sushi','ativo':False}] 
 
-def exibir_nome_do_programa():  
- print("""Oscar Alhos
-  """)
+def exibir_nome_do_programa():
+ print("""Oscar Alho
+ """)
 def exibir_opcoes():
+ '''Essa função é responavel por exibir opções'''
  print('1. Cadastrar restaurante')
  print('2. Listar restaurante')
  print('3. Ativar restaurante')
  print('4. Sair')
-
-def finalizar_app():
-   exibir_subtitulos('Finalizar App')
-   
-def voltar_ao_menu_principal():
-   '''Essa função é responsavel por voltar ao menu principal
-   inputs:
-   -voltar ao menu principal
-   
+ 
+def finaliza_app():
+   '''Essa função finaliza o Aplicativo
    output:
-   -Volta ao menu principal'''
-   input('\n Digite a tecla "Enter" para voltar ao menu pŕincipal')
-   main()
+   - Aplicativo Finalizado
+   '''
+   exibir_subtitulo('Finalizar App')
 
+def voltar_ao_menu_principal():
+   '''Essa função é responsavel por fazer voltar ao menu principal1
+   '''
+
+   input('\n Digite a tecla "Enter" para voltar ao menu principal')
+   main()
+   
 def opcao_invalida():
+   '''Essa função é reponavel por invalidar as opções
+   '''
+
    print('Opção invalida!\n')
    voltar_ao_menu_principal()
 
-def exibir_subtitulos(texto):
-    os.system("clear")
-    linha = '*' + (len(texto))
+def exibir_subtitulo(texto):
+    '''Essa função é responsavel '''
+    os.system('clear') 
+    linha = '*' * (len(texto))
     print(linha)
     print(texto)
     print(linha)
     print()
 
 def cadastrar_novo_restaurante():
-   '''Essa função é responavel por cadastrar um novo restaurante
-    inputs:
-    - Nome do restaurante
-    - Categoria
-
-    output:
-    - Adiciona um novo restaurante à lista de restaurantes
+   '''Essa função  é responsável por cadastrar um novo restaurante 
+   inputs:
+   - Nome do restaurante
+   - Categoria
+   
+   Output:
+   - Adicionar um novo restaurante à lista de restaurantes
    '''
    
-
-   exibir_subtitulos('Cadastro de novos restaurantes: ')
-   nome_do_restaurante = input(f'Digite o nome do novo Restaurante{nome_do_restaurante}:')
-   categoria = input(f'Digite a categoria do restaurante {categoria}:')
+   exibir_subtitulo('Cadastro de novos restaurantes: ')
+   nome_do_restaurante = input('Digite o nome do novo restaurante:')
+   categoria = input(f'Digite a categoria do restaurante {nome_do_restaurante}: ')
    dado_do_restaurante ={'nome':nome_do_restaurante,'categoria':categoria,'ativo':False}
    restaurantes.append(dado_do_restaurante)
    print(f'O restaurante {nome_do_restaurante} foi cadastrado com sucesso!')
@@ -60,85 +65,67 @@ def cadastrar_novo_restaurante():
 def listar_restaurante():
    '''Essa função é responsavel por listar os restaurantes
    output:
-   - Apresenta uma lista dos Restaurantes
+   - Apresenta na tela a lista com os nomes dos rertaurantes
    '''
 
+   exibir_subtitulo('Listando os restaurantes')
 
-   exibir_subtitulos('Listando os Restaurantes')
-   '''Essa função é responsavel por exibir os subtitulos
-   output:
-   - Exibe o subtitulos
-   '''
-
-
-   print(f'{"Nome do restaurnte".ljust(22)} | {"Categoria".ljust(20)} | Status')
+   print(f'{"Nome do restaurante".ljust(22)} | {"Categoria".ljust(20)} | Status')
    for restaurante in restaurantes:
       nome_restaurante = restaurante['nome']
       categoria = restaurante['categoria']
       ativo = 'ativado' if restaurante['ativo'] else 'desativado'
-      print(f'-{nome_restaurante.ljust(20)} | {categoria.ljust(20)} | {ativo}')
+      print(f'- {nome_restaurante.ljust(20)} | {categoria.ljust(20)} | {ativo}')
 
-   voltar_ao_menu_principal()
-   '''Essa função é responsavel por voltar ao menu
-   output:
-   - Volta ao menu'''
+   voltar_ao_menu_principal()   
 
-
-def alternar_estado_restaurnte():
-   '''Essa função é responsavel por alterar o estado do restaurante
+def alternar_estado_retaurante():
+   '''Essa função e responsavel por alterar o estado dos restaurantes
    inputs:
-   - Nome do restaurante
-
+   - nome do retaurante
+   - categoria 
    output:
-   - Altera o estado do restaurante
+   - Estado do restaurante foi alterado
    '''
-   
 
-   exibir_subtitulos('Alternando estado do restaurante')
-
-   nome_restaurante = input('Digite o nome do restaurante que deseja alterar o estado:')
+   exibir_subtitulo('alternando estado do retaurante')
+   nome_restaurante = input ('digite o nome do restaurante que deseja alterar o estado')
    restaurante_encontrado = False
 
-   for restaurante in restaurantes:
-     if nome_restaurante == restaurante['nome']:
-       restaurante_encontrado = True
-       restaurante['ativo'] = not restaurante['nome']
-       mensagem = f'O restaurante {nome_restaurante} foi ativado com sucesso' if restaurante['ativo'] else f'O restaurante {nome_restaurante} foi desativado com sucesso' 
-       print(mensagem)
+   for retaurante in restaurantes:
+       if nome_restaurante == restaurantes['nome']:
+         restaurante_encontrado = True
+         restaurantes['ativo'] = not restaurantes['ativo'] 
+         mensagem = f'o restaurante {nome_restaurante} foi ativado com sucesso' if restaurantes['ativo'] else f'o restaurante {nome_restaurante} foi desativado com sucesso'
+         print(mensagem)
 
    if not restaurante_encontrado:
-      print('O restaurante não foi encontrado')
-   voltar_ao_menu_principal()
+       print('o restaurante não foi encontrado')
+   voltar_ao_menu_principal()       
 
 def escolher_opcao():
-   '''Essa função é responsavel por dar as opções
-   output:
-   - Opções'''
-
-
-try:
+ try:
     opcao_escolhida = int(input('Escolha uma opção: '))
-   
+
     if opcao_escolhida == 1:
         cadastrar_novo_restaurante()
     elif opcao_escolhida == 2:
         listar_restaurante()
     elif opcao_escolhida == 3:
-        alternar_estado_restaurnte
+        print('Ativar restaurantes')
     elif opcao_escolhida == 4:
-       finalizar_app()
+       finaliza_app()    
     else:
        opcao_invalida()
-        
-except:
-      opcao_invalida()
+
+ except:
+    opcao_invalida()        
 
 def main():
-    os.system('clear')
-    exibir_nome_do_programa()
-    exibir_opcoes()
-    escolher_opcao()
+   os.system('clear')
+   exibir_nome_do_programa()
+   exibir_opcoes()
+   escolher_opcao()
 
 if __name__ == '__main__':
     main()
-   
